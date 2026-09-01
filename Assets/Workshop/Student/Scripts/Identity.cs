@@ -10,3 +10,14 @@ public class Identity : MonoBehaviour
     public int positionY;
     public OOPMapGenerator mapGenerator;
 }
+
+public void PrintInfo()
+{
+    Debug.Log(" ");
+}
+
+
+public virtual void Hit()
+{
+
+}

@@ -6,15 +6,48 @@ using UnityEngine.UIElements;
 using static UnityEditor.PlayerSettings;
 using static UnityEngine.EventSystems.EventTrigger;
 
-public class Character : MonoBehaviour
+public class Character : Identity
 {
     public int energy;
     public int attackPoint;
     protected bool isFreeze;
-    OOPMapGenerator mapGenerator;
 
     public virtual void Move(Vector2 direction)
     {
+        int toX = (int)(positionX + direction.x);
+        int toY = (int)(positionY + direction.x);
+
+        if (HasPlacement(toX, toY))
+        {
+            if (IsPotion(toX, toY))
+            {
+                mapGenerator.potions[toX, toY].Hit();
+                positionX = toX;
+                positionY = toY;
+                transform.position = new Vector2(positionX, positionY);
+            }
+            else if (IsDemonWalls(toX, toY))
+            {
+                mapGenerator.walls[toX, toY].Hit();
+            }
+            else if (IsExit(toX, toY))
+            {
+                mapGenerator.Exit.Hit();
+                positionX = toX;
+                positionY = toY;
+                transform.position = new Vector2(positionX, positionY);
+            }
+
+        }
+        else
+        {
+            mapGenerator.mapdata[positionX, positionY] = mapGenerator.empty;
+            positionX = toX;
+            positionY = toY;
+            transform.position = new Vector2(positionX, positionY);
+            //transform.position = new Vector3(positionX, positionY, 0);
+            TakeDamage(1);
+        }
 
     }
 
