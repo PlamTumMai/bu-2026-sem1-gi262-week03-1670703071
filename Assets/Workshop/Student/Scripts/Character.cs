@@ -102,30 +102,26 @@ public class Character : Identity
     /// <returns></returns>
     public bool HasPlacement(int x, int y)
     {
-        // int mapData = mapGenerator.GetMapData(x, y);
-        // return mapData != mapGenerator.empty;
-        return false;
+        string mapData = mapGenerator.GetMapData(x, y);
+        return mapData != mapGenerator.empty;
     }
 
     public bool IsDemonWalls(int x, int y)
     {
-        // int mapData = mapGenerator.GetMapData(x, y);
-        // return mapData == mapGenerator.demonWall;
-        return false;
+        string mapData = mapGenerator.GetMapData(x, y);
+        return mapData == mapGenerator.demonWall;
     }
 
     public bool IsPotion(int x, int y)
     {
-        // int mapData = mapGenerator.GetMapData(x, y);
-        // return mapData == mapGenerator.potion;
-        return false;
+        string mapData = mapGenerator.GetMapData(x, y);
+        return mapData == mapGenerator.potion;
     }
 
     public bool IsExit(int x, int y)
     {
-        // int mapData = mapGenerator.GetMapData(x, y);
-        // return mapData == mapGenerator.exit;
-        return false;
+        string mapData = mapGenerator.GetMapData(x, y);
+        return mapData == mapGenerator.exit;
     }
 
     #endregion
